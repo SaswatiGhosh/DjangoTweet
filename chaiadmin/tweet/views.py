@@ -56,7 +56,7 @@ def tweet_delete(request, tweet_id):
 
 def register(request):
     if request.method == 'POST':
-        form = UserRegistrationForm(request.post)
+        form = UserRegistrationForm(request.POST)
         if form.is_valid():
             user=form.save(commit=False)
             user.set_password(form.cleaned_data['password1'])
@@ -67,3 +67,10 @@ def register(request):
         form = UserRegistrationForm()
     return render(request , 'registration/register.html' , {'form' : form})
 
+def search(request):
+    if request.method == 'POST':
+        searched=request.POST['searched']
+        word= Tweet.objects.all().filter(text=searched)
+        return render(request , 'search.html' , {'searched' : searched ,'word' : word })
+    else:
+        return render(request , 'search.html' )
