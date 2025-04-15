@@ -7,5 +7,5 @@ git push -u origin main
 
 
 How to activate script?
-
+venv\Scripts\activate
 

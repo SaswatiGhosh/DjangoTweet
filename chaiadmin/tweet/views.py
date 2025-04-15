@@ -70,7 +70,14 @@ def register(request):
 def search(request):
     if request.method == 'POST':
         searched=request.POST['searched']
-        word= Tweet.objects.all().filter(text=searched)
-        return render(request , 'search.html' , {'searched' : searched ,'word' : word })
+        # print(Tweet.objects.all().values('text').filter(text=searched))
+        # print(Tweet.objects.filter(text=searched).values())
+        # word= Tweet.objects.values().filter(text=searched)
+        res= []
+        for t in Tweet.objects.all():
+            if searched in t.text:
+                print(t.text)
+                res.append(t)
+        return render(request , 'search.html' , {'searched' : searched ,'words': res })
     else:
         return render(request , 'search.html' )
