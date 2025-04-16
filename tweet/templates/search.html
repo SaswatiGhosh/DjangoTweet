@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    {% if searched %}
+        <h2> Your search result for {{searched}}</h2>
+        {% comment %} {%for word in words%}
+            <p>{{word}}</p> {% endcomment %}
+            <c-example-card>
+                
+            </c-example-card>
+
+        {% endfor %}
+    {%else %}
+        <h2> Hey! You forgot to search a word</h2>
+
+    {%endif%}
+{% endblock %}
